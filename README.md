@@ -2,7 +2,7 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
 
-  <p align="center">A package which you can use to extract entities from a text file to a given path of a text file</p>
+  <p align="center">A package that uses nestJS Framework and Nest Commander to function which is later used to extract entities from a text file to a given path of a text file</p>
     <p align="center">
   
 ## Installation
