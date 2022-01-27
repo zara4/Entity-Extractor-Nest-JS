@@ -1,7 +1,7 @@
 import { TestingModule } from '@nestjs/testing';
 import CommandTestFactory from 'nest-commander-testing';
 import childProcess from 'child_process';
-import { AppModule } from './../src/app.module';
+import { AppModule } from '../src/app.module';
 import os from 'os';
 
 describe('Task Command', () => {
@@ -13,6 +13,11 @@ describe('Task Command', () => {
         imports: [AppModule],
       })
       .compile();
+  });
+  describe('root', () => {
+    it('should be defined', () => {
+      expect(AppModule).toBeDefined();
+    });
   });
 
   it('should call the "run" method', async () => {
