@@ -5,4 +5,4 @@ import { InputFileQuestions } from './inputquestions';
 @Module({
   providers: [EntityExtractor, InputFileQuestions],
 })
-export class SayHelloModule {}
+export class AppModule {}

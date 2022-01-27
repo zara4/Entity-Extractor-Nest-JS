@@ -1,24 +1,27 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
+import { TestingModule } from '@nestjs/testing';
+import CommandTestFactory from 'nest-commander-testing';
+import childProcess from 'child_process';
 import { AppModule } from './../src/app.module';
+import os from 'os';
 
-describe('AppController (e2e)', () => {
-  let app: INestApplication;
-
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
-    await app.init();
+describe('Task Command', () => {
+  let commandInstance: TestingModule;
+  const command = CommandTestFactory.CommandTestFactory;
+  beforeAll(async () => {
+    commandInstance = await command
+      .createTestingCommand({
+        imports: [AppModule],
+      })
+      .compile();
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
+  it('should call the "run" method', async () => {
+    const spawnSpy = jest.spyOn(childProcess, 'spawn');
+    command.setAnswers(['input.txt', 'output.txt']);
+    await command.run(commandInstance, ['run', 'sayHello']);
+    expect(spawnSpy).toBeCalledWith([
+      'sayHello',
+      { shell: os.userInfo().shell },
+    ]);
   });
 });
