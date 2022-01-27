@@ -7,7 +7,7 @@ export class InputFileQuestions {
     name: 'inputfile',
     message: 'Input the path of Input File Location',
   })
-  parseInput(val: string) {
+  parseInput(val: string): string {
     return val;
   }
 
@@ -16,7 +16,7 @@ export class InputFileQuestions {
     name: 'outputfile',
     message: 'Input the path of Output File Location',
   })
-  parseOutput(val: string) {
+  parseOutput(val: string): string {
     return val;
   }
 }
